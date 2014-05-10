@@ -7,7 +7,7 @@ $(function() {
         $info = $('#info'),
         $list = $('#list'),
 
-        user = location.hash.substring(1) || 'wenzhixin',
+        user = 'wenzhixin',
         stat = {},
         repos = [];
 
@@ -17,17 +17,8 @@ $(function() {
     }
 
     function initEvents() {
-        var hashChange = function() {
-            $info.html('');
-            $list.html('Loading...');
-            getRepos();
-        };
-        $(window).on('hashchange', hashChange);
         $(document).on('submit', '#form', function() {
-            $(window).off('hashchange', hashChange);
-            location.hash = '#' + $('#username').val();
-            $(window).on('hashchange', hashChange);
-            hashChange();
+            location.href = location.origin + location.pathname + '?' + $('#username').val();
             return false;
         });
         $(document).on('click', '[data-type]', function() {
@@ -44,7 +35,7 @@ $(function() {
                 page: 1 // start at page 1
             };
 
-        user = location.hash.substring(1) || 'wenzhixin';
+        user = location.search.substring(1) || user;
         $.ajax({
             url: 'https://api.github.com/users/' + user + '/repos?' + $.param(params),
             type: 'GET',
