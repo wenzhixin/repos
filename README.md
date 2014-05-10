@@ -1,4 +1,4 @@
 repos
 =====
 
-Github repos.
+[Github repos](http://repos.wenzhixin.net.cn).
