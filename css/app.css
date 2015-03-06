@@ -2,6 +2,14 @@
     margin-top: 60px;
 }
 
+.alert-info h2 {
+    margin-top: 0;
+}
+
+.alert-info h2 a {
+    font-size: 14px;
+}
+
 .panel {
     position: relative;
 }
