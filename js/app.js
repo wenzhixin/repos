@@ -82,10 +82,14 @@ $(function() {
         stat = {
             all: repos.length,
             sources: 0,
-            forks: 0
+            forks: 0,
+            total_stars: 0,
+            total_forks: 0
         };
         $.map(repos, function(repo, i) {
             repo.fork ? stat.forks++ : stat.sources++;
+            stat.total_stars += repo.stargazers_count;
+            stat.total_forks += repo.forks_count;
         });
     }
 
