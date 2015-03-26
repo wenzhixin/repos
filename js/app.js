@@ -7,13 +7,15 @@ $(function() {
         $info = $('#info'),
         $list = $('#list'),
 
-        user = 'wenzhixin',
+        user = {
+            name: location.search.substring(1) || 'wenzhixin'
+        },
         stat = {},
         repos = [];
 
     function main() {
         initEvents();
-        getRepos();
+        getUser(getRepos);
     }
 
     function initEvents() {
@@ -26,6 +28,20 @@ $(function() {
         });
     }
 
+    function getUser(callback) {
+        $.ajax({
+            url: 'https://api.github.com/users/' + user.name,
+            type: 'GET',
+            dataType: 'jsonp',
+            success: function (res) {
+                user.followers = res.data.followers;
+                user.following = res.data.following;
+                callback();
+            },
+            error: callback
+        });
+    }
+
     function getRepos() {
         var params = {
                 type: 'owner', // all, owner, member
@@ -35,9 +51,8 @@ $(function() {
                 page: 1 // start at page 1
             };
 
-        user = location.search.substring(1) || user;
         $.ajax({
-            url: 'https://api.github.com/users/' + user + '/repos?' + $.param(params),
+            url: 'https://api.github.com/users/' + user.name + '/repos?' + $.param(params),
             type: 'GET',
             dataType: 'jsonp',
             success: function(res) {
