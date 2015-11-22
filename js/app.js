@@ -34,6 +34,7 @@ $(function() {
             type: 'GET',
             dataType: 'jsonp',
             success: function (res) {
+                user.avatar_url = res.data.avatar_url;
                 user.followers = res.data.followers;
                 user.following = res.data.following;
                 callback();

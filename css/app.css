@@ -32,3 +32,7 @@
 .mt10 {
     margin-top: 10px;
 }
+.user {
+    float: left;
+    margin-right: 10px;
+}

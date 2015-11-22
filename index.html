@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>个人开源项目</title>
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="viewport" content="initial-scale=1， maximum-scale=1， user-scalable=no">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="assets/octicon/octicons.css">
     <link rel="stylesheet" href="css/app.css">
@@ -43,7 +43,7 @@
 
 <div class="footer">
     <p>
-        Copyright © 2012-2014 wenzhixin.net.cn
+        Copyright © 2012-2022 wenzhixin.net.cn
     </p>
 </div>
 
@@ -68,36 +68,28 @@
 <script id="info-template" type="text/x-handlebars-template">
     <div class="alert alert-info">
         <h2>GitHub 个人开源项目 <a href="javascript:void(0)" data-toggle="modal" data-target="#this-info"><i class="glyphicon glyphicon-info-sign"></i></a></h2>
-        {{#with user}}
-        <form id="form" class="form-inline">
-            <div class="form-group">
-                <label class="control-label">User: </label>
+        <div>
+            <div class="user">
+                <img src="{{user.avatar_url}}" width="80" height="80">
             </div>
-            <div class="form-group">
-                <input id="username" type="text" class="form-control input-sm" value="{{name}}">
+            <div>
+                <div class="mt10">
+                    <span class="octicon octicon-mark-github"></span>
+                    <a href="https://github.com/{{name}}" target="_blank"><b>{{user.name}}</b></a> ，
+                    粉丝: <span class="octicon octicon-thumbsup"></span> <b>{{user.followers}}</b> ，
+                    关注: <span class="octicon octicon-person"></span> <b>{{user.following}}</b>
+                </div>
+                <div class="mt10">
+                    所有的开源项目：<a href="javascript:void(0)" data-type="all">{{stat.all}}</a>，
+                    原创项目：<a href="javascript:void(0)" data-type="source">{{stat.sources}}</a>，
+                    参与项目：<a href="javascript:void(0)" data-type="fork">{{stat.forks}}</a>
+                </div>
+                <div class="mt10">
+                    项目的总 Stars 数：<span class="octicon octicon-star"></span> <b>{{stat.total_stars}}</b> ，
+                    项目的总 Forks 数：<span class="octicon octicon-repo-forked"></span> <b>{{stat.total_forks}}</b>
+                </div>
             </div>
-            <button class="btn btn-default btn-sm" type="submit">
-                <i class="glyphicon glyphicon-send"></i> Go!
-            </button>
-        </form>
-        <div class="mt10">
-            <span class="octicon octicon-mark-github"></span> 
-            <a href="https://github.com/{{name}}" target="_blank"><b>{{name}}</b></a> ,
-            Followers: <span class="octicon octicon-thumbsup"></span> <b>{{followers}}</b> ,
-            Following: <span class="octicon octicon-person"></span> <b>{{following}}</b>
         </div>
-        {{/with}}
-        {{#with stat}}
-        <div class="mt10">
-            All Repositories: <a href="javascript:void(0)" data-type="all">{{all}}</a>,
-            Sources: <a href="javascript:void(0)" data-type="source">{{sources}}</a>,
-            Forks: <a href="javascript:void(0)" data-type="fork">{{forks}}</a>
-        </div>
-        <div class="mt10">
-            Total Stars: <span class="octicon octicon-star"></span> <b>{{total_stars}}</b> ,
-            Total Forks: <span class="octicon octicon-repo-forked"></span> <b>{{total_forks}}</b> 
-        </div>
-        {{/with}}
     </div>
 </script>
 
@@ -106,25 +98,25 @@
     <div class="col-md-3">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <a href="https://github.com/{{full_name}}">{{plusOne @index}}. {{name}}</a>
+                <a href="https://github.com/{{full_name}}" target="_blank">{{plusOne @index}}. {{name}}</a>
             </div>
             <div class="panel-body">
                 <div class="stars-forks">
                     <div class="btn-group btn-group-sm">
-                        <a class="btn btn-default" href="https://github.com/{{full_name}}">
+                        <a class="btn btn-default" href="https://github.com/{{full_name}}" target="_blank">
                             <span class="octicon octicon-star"></span>
                             Star
                         </a>
-                        <a class="btn btn-default" href="https://github.com/{{full_name}}/stargazers">
+                        <a class="btn btn-default" href="https://github.com/{{full_name}}/stargazers" target="_blank">
                             {{stargazers_count}}
                         </a>
                     </div>
                     <div class="btn-group btn-group-sm">
-                        <a class="btn btn-default" href="https://github.com/{{full_name}}/fork">
+                        <a class="btn btn-default" href="https://github.com/{{full_name}}/fork" target="_blank">
                             <span class="octicon octicon-repo-forked"></span>
                             Fork
                         </a>
-                        <a class="btn btn-default" href="https://github.com/{{full_name}}/network">
+                        <a class="btn btn-default" href="https://github.com/{{full_name}}/network" target="_blank">
                             {{forks_count}}
                         </a>
                     </div>
